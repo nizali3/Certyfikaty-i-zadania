@@ -1,0 +1,15 @@
+function titleCase(str) {
+  
+  const splitString=str.toLowerCase().split(" ");
+  const wynik=[];
+  let zlaczony="";
+  for(let index in splitString){
+    wynik[index]=splitString[index][0].charAt(0).toUpperCase()+splitString[index].slice(1).toLowerCase();
+  }
+zlaczony=wynik.join(" ");
+console.log(zlaczony)
+ return zlaczony;
+
+}
+
+titleCase("I'm a little tea pot");
