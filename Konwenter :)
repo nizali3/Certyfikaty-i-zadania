@@ -1,0 +1,71 @@
+function convertToRoman(num) {
+ const arr1=[["M",	1000], ["CM",	900], ["D",	500], ["CD",	400], ["C",	100], ["XC",	90], ["L",	50], ["XL",	40], ["X",	10], ["IX",	9], ["V",5], ["IV",	4], ["I",1]];
+const string=num.toString();
+const dlugosc=string.length;
+let rozdzieloneTysiace=[];
+let rozdzieloneSetki=[];
+let rozdzieloneDziesiatki=[];
+let rozdzieloneJednostki=[];
+let wynik=[];
+let ostatecznyWynik="";
+if (dlugosc==4){let Tysiace=parseInt(string[0]+"000");
+rozdzieloneTysiace.push(Tysiace);
+//console.log(Tysiace);
+}
+if (dlugosc >= 3){let Setki=parseInt(string[dlugosc-1-2]+"00");
+rozdzieloneSetki.push(Setki);
+//console.log(Setki)
+}
+if (dlugosc >= 2){ let Dziesiatki = parseInt(string[dlugosc-1-1]+"0");
+rozdzieloneDziesiatki.push(Dziesiatki);
+//console.log(Dziesiatki)
+}
+if (dlugosc >= 1){ let Jednostki = parseInt(string[dlugosc-1-0]);
+rozdzieloneJednostki.push(Jednostki);
+//console.log(Jednostki)
+}
+for(let i=0; i<=arr1.length-1; i++){
+
+if (rozdzieloneTysiace>=arr1[i][1]){
+  while (rozdzieloneTysiace>=arr1[i][1]){
+  wynik.push(arr1[0][0])
+  rozdzieloneTysiace-=arr1[0][1];
+  }
+
+
+  }
+
+if (rozdzieloneSetki>=arr1[i][1]){
+  while(rozdzieloneSetki>=arr1[i][1]){
+wynik.push(arr1[i][0])
+rozdzieloneSetki-=arr1[i][1];
+  }
+
+}
+if (rozdzieloneDziesiatki>=arr1[i][1]){
+  while(rozdzieloneDziesiatki>=arr1[i][1]){
+wynik.push(arr1[i][0])
+rozdzieloneDziesiatki-=arr1[i][1];
+  }
+
+}
+
+if(rozdzieloneJednostki>=arr1[i][1]){
+  while(rozdzieloneJednostki>=arr1[i][1]){
+  wynik.push(arr1[i][0])
+  console.log(rozdzieloneJednostki)
+  rozdzieloneJednostki-=arr1[i][1];
+  console.log(rozdzieloneJednostki)
+  }
+  
+
+}
+
+}
+ostatecznyWynik=wynik.join("");
+
+console.log(ostatecznyWynik)
+return ostatecznyWynik
+}
+
+convertToRoman(1006);
