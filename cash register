@@ -1,0 +1,64 @@
+function checkCashRegister(price, cash, cid) {
+ let waluta= [["PENNY", .01],["NICKEL", .05],["DIME", .10],["QUARTER", .25],
+  ["ONE", 1.00], ["FIVE", 5.00], ["TEN", 10.00], ["TWENTY", 20.00], ["ONE HUNDRED", 100.00]
+];
+let kasaDoWydania = cash - price;
+let kasaBezP=kasaDoWydania.toFixed(2);
+let cidWKasie=0;
+cid.forEach(function(x){
+  cidWKasie+=x[1]
+});
+let kasapoprzecinku=cidWKasie.toFixed(2);
+console.log(kasapoprzecinku, "tyle jest w kasie")
+console.log(kasaBezP,"kasa do wyplaty");
+if(kasaDoWydania>kasapoprzecinku){
+  return {status: "INSUFFICIENT_FUNDS", change: []};
+} 
+else if(kasaBezP===kasapoprzecinku){
+  return {status: "CLOSED", change: cid};
+}else{
+  cid=cid.reverse();
+  waluta=waluta.reverse();
+  let wynik=[]
+// console.log(cid)
+let liczba=0;
+let string="";
+  for(let i=0; i<cid.length; i++){
+  let wynikowa=[[0],0]
+    while (kasaBezP>=waluta[i][1] && cid[i][1] >0){
+      cid[i][1]-=waluta[i][1];
+      liczba+=waluta[i][1];
+      string=waluta[i][0];
+      kasaBezP-=waluta[i][1];
+      kasaBezP=kasaBezP.toFixed(2);
+      //console.log(kasaBezP)
+     wynikowa=[string, liczba];
+    }
+    liczba=0;
+    if (wynikowa[1]>0){
+      wynik.push(wynikowa)
+    }
+    
+    //console.log(wynikowa)
+  }
+if (kasaBezP > 0) {
+    return { status: "INSUFFICIENT_FUNDS", change: [] };
+}
+let scalone=wynik
+
+  console.log(kasaBezP)
+  console.log(scalone)
+  return {status: "OPEN", change: wynik}
+  
+
+//let rozdzielone = wynik.split();
+ 
+//console.log(string)
+
+}
+
+
+  
+}
+
+checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
