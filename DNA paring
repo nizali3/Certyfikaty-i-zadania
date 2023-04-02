@@ -1,0 +1,24 @@
+function pairElement(str) {
+  let arr=[];
+   for(let i =0; i<=str.length-1; i++){
+     
+     switch(str[i]){
+       case "A": 
+       arr[i]=["A","T"];
+       break;
+       case "C":
+        arr[i]=["C","G"];
+       break;
+       case "G":
+       arr[i]=["G","C"];
+       break;
+       case "T":
+       arr[i]=["T","A"];
+       break;
+     }
+   }
+   console.log(arr)
+   return arr;
+}
+
+pairElement("GCG");
